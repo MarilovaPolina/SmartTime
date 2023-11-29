@@ -143,7 +143,7 @@ function delete($table, $id){
         t1.content,
         t1.status,
         t1.created_date,
-        t2.username
+        t2.login
         FROM $table1 AS t1 JOIN $table2 AS t2 ON t1.id_user = t2.id";
         $query = $pdo->prepare($sql);
         $query->execute();
@@ -155,7 +155,7 @@ function delete($table, $id){
 // Выборка записей (posts) с автором на главную
 function selectAllFromPostsWithUsersOnIndex($table1, $table2, $limit, $offset){
     global $pdo;
-    $sql = "SELECT p.*, u.username FROM $table1 AS p JOIN $table2 AS u ON p.id_user = u.id WHERE p.status=1 LIMIT $limit OFFSET $offset";
+    $sql = "SELECT p.*, u.login FROM $table1 AS p JOIN $table2 AS u ON p.id_user = u.id WHERE p.status=1 LIMIT $limit OFFSET $offset";
     $query = $pdo->prepare($sql);
     $query->execute();
     dbCheckError($query);
@@ -179,7 +179,7 @@ function seacrhInTitileAndContent($text, $table1, $table2){
     $text = trim(strip_tags(stripcslashes(htmlspecialchars($text))));
     global $pdo;
     $sql = "SELECT 
-        p.*, u.username 
+        p.*, u.login 
         FROM $table1 AS p 
         JOIN $table2 AS u 
         ON p.id_user = u.id 
@@ -194,7 +194,7 @@ function seacrhInTitileAndContent($text, $table1, $table2){
 // Выборка записи (posts) с автором для синг
 function selectPostFromPostsWithUsersOnSingle($table1, $table2, $id){
     global $pdo;
-    $sql = "SELECT p.*, u.username FROM $table1 AS p JOIN $table2 AS u ON p.id_user = u.id WHERE p.id=$id";
+    $sql = "SELECT p.*, u.login FROM $table1 AS p JOIN $table2 AS u ON p.id_user = u.id WHERE p.id=$id";
     $query = $pdo->prepare($sql);
     $query->execute();
     dbCheckError($query);

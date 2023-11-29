@@ -22,13 +22,13 @@
         </div>
         <div class="w-100"></div>
         <div class="mb-3 col-12 col-md-4">
-            <label for="formGroupExampleInput" class="form-label">Ваша почта (при регистрации)</label>
-            <input name="mail" value="<?=$email?>" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="введите ваш email...">
+            <label for="formGroupExampleInput" class="form-label">Логин</label>
+            <input value="<?= $login ?>" name="login" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Логин">
         </div>
         <div class="w-100"></div>
         <div class="mb-3 col-12 col-md-4">
             <label for="exampleInputPassword1" class="form-label">Пароль</label>
-            <input name="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="введите ваш пароль...">
+            <input name="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Пароль">
         </div>
         <div class="w-100"></div>
         <div class="mb-3 col-12 col-md-4">

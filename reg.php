@@ -16,37 +16,38 @@
 <!-- END HEADER -->
 <!-- FORM -->
 <div class="container reg_form">
+    <h2>Регистрация</h2>
     <form action="reg.php" method="post" class="row justify-content-center">
-        <h2>Форма регистрации</h2>
-        <div class="mb-3 col-12 col-md-4 err">
-            <p><?=$errMsg?></p>
-        </div>
-        <div class="w-100"></div>
-        <div class="mb-3 col-12 col-md-4">
-            <label for="formGroupExampleInput" class="form-label">Ваш логин</label>
-            <input name="login" value="<?=$login?>" type="text" class="form-control" id="formGroupExampleInput" placeholder="введите ваш логин...">
-        </div>
-        <div class="w-100"></div>
-        <div class="mb-3 col-12 col-md-4">
-            <label for="exampleInputEmail1" class="form-label">Email</label>
-            <input name="mail" value="<?=$email?>" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="введите ваш email...">
-            <div id="emailHelp" class="form-text">Ваш email адрес не будет использован для спама!</div>
-        </div>
-        <div class="w-100"></div>
-        <div class="mb-3 col-12 col-md-4">
-            <label for="exampleInputPassword1" class="form-label">Пароль</label>
-            <input name="pass-first" type="password" class="form-control" id="exampleInputPassword1" placeholder="введите ваш пароль...">
-        </div>
-        <div class="w-100"></div>
-        <div class="mb-3 col-12 col-md-4">
-            <label for="exampleInputPassword2" class="form-label">Повторите пароль</label>
-            <input name="pass-second" type="password" class="form-control" id="exampleInputPassword2" placeholder="повторите ваш пароль...">
-        </div>
-        <div class="w-100"></div>
-        <div class="mb-3 col-12 col-md-4">
-            <button type="submit" class="btn btn-secondary" name="button-reg">Регистрация</button>
-            <a href="aut.html">Войти</a>
-        </div>
+    
+    <div>
+        <i>
+            <p class="err">
+                <?= $errMsg ?>
+            </p>
+        </i>
+    </div>
+
+    <input name="login" class="inputline" type="text" maxlength="255" placeholder="Логин*" value="<?= $login ?>" required></br>
+    <input name="surname" class="inputline" type="text" maxlength="255" placeholder="Фамилия*" value="<?= $surname ?>"
+        required></br>
+    <input name="name" class="inputline" type="text" maxlength="255" placeholder="Имя*" value="<?= $name ?>" required></br>
+    
+    <input name="password" class="inputline" type="password" maxlength="255" placeholder="Пароль*" required></br>
+    <input name="password_repeat" class="inputline" type="password" maxlength="255" placeholder="Повторите пароль*"
+        required></br>
+
+    <div class="form-check">
+        <input name="publish" class="form-check-input" type="checkbox" value="1" id="flexCheckChecked" checked>
+        <label class="form-check-label" for="flexCheckChecked">
+        Я согласен с обработкой персональных данных
+        </label>
+    </div>
+
+    <div class="w-100"></div>
+    <div class="mb-3 col-12 col-md-4">
+        <button type="submit" class="btn btn-secondary" name="button-reg">Регистрация</button>
+        <a href="aut.html">Войти</a>
+    </div>
     </form>
 </div>
 <?php include("app/include/footer.php"); ?>

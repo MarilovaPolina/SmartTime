@@ -20,27 +20,29 @@ $users = selectAll('users');
 if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['button-reg'])){
 
     $admin = 0;
-    $login = trim($_POST['login']);
-    $email = trim($_POST['mail']);
-    $passF = trim($_POST['pass-first']);
-    $passS = trim($_POST['pass-second']);
+    $surname=trim($_POST['surname']);
+    $name=trim($_POST['name']);
+    $login=trim($_POST['login']);
+    $pass1=trim($_POST['password']);
+    $pass2=trim($_POST['password_repeat']);
 
-    if($login === '' || $email === '' || $passF === ''){
-        array_push($errMsg, "Не все поля заполнены!");
-    }elseif (mb_strlen($login, 'UTF8') < 2){
-        array_push($errMsg, "Логин должен быть более 2-х символов");
-    }elseif ($passF !== $passS) {
-        array_push($errMsg, "Пароли в обеих полях должны соответствовать!");
+    if($surname === '' || $name === '' || $login === '' || $pass1 === '' || $pass2 === ''){
+        $errMsg='Заполните все поля';
+    }elseif(mb_strlen($login, 'UTF8')<3){
+        $errMsg='Логин должен содержать более 3 символов';
+    }elseif($pass1 !== $pass2){
+        $errMsg='Пароли не сопадают';
     }else{
-        $existence = selectOne('users', ['email' => $email]);
-        if($existence['email'] === $email){
+        $existence = selectOne('users', ['login' => $login]);
+        if($existence['login'] === $login){
             array_push($errMsg, "Пользователь с такой почтой уже зарегистрирован!");
         }else{
             $pass = password_hash($passF, PASSWORD_DEFAULT);
             $post = [
                 'admin' => $admin,
-                'username' => $login,
-                'email' => $email,
+                'name' => $name,
+                'surname' =>$surname,
+                'login' => $login,
                 'password' => $pass
             ];
             $id = insert('users', $post);

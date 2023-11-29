@@ -10,9 +10,7 @@ $id = '';
 $title = '';
 $content = '';
 $img = '';
-$topic = '';
 
-$topics = selectAll('topics');
 $posts = selectAll('posts');
 $postsAdm = selectAllFromPostsWithUsers('posts', 'users');
 
@@ -43,11 +41,10 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_post'])){
 
     $title = trim($_POST['title']);
     $content = trim($_POST['content']);
-    $topic = trim($_POST['topic']);
     $publish = isset($_POST['publish']) ? 1 : 0;
 
 
-    if($title === '' || $content === '' || $topic === ''){
+    if($title === '' || $content === ''){
         array_push($errMsg, "Не все поля заполнены!");
     }elseif (mb_strlen($title, 'UTF8') < 7){
         array_push($errMsg, "Название статьи должно быть более 7-ми символов");
@@ -58,7 +55,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_post'])){
             'content' => $content,
             'img' => $_POST['img'],
             'status' => $publish,
-            'id_topic' => $topic
         ];
 
         $post = insert('posts', $post);
@@ -70,7 +66,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_post'])){
     $title = '';
     $content = '';
     $publish = '';
-    $topic = '';
 }
 
 
@@ -81,7 +76,6 @@ if($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id'])){
     $id =  $post['id'];
     $title =  $post['title'];
     $content = $post['content'];
-    $topic = $post['id_topic'];
     $publish = $post['status'];
 }
 
@@ -89,7 +83,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit_post'])){
     $id =  $_POST['id'];
     $title = trim($_POST['title']);
     $content = trim($_POST['content']);
-    $topic = trim($_POST['title_topic']);
     $publish = isset($_POST['publish']) ? 1 : 0;
 
     if (!empty($_FILES['img']['name'])){
@@ -115,7 +108,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit_post'])){
     }
 
 
-    if($title === '' || $content === '' || $topic === ''){
+    if($title === '' || $content === ''){
         array_push($errMsg, "Не все поля заполнены!");
     }elseif (mb_strlen($title, 'UTF8') < 7){
         array_push($errMsg, "Название статьи должно быть более 7-ми символов");
@@ -126,7 +119,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit_post'])){
             'content' => $content,
             'img' => $_POST['img'],
             'status' => $publish,
-            'id_topic' => $topic
         ];
 
         $post = update('posts', $id, $post);
@@ -136,7 +128,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit_post'])){
     $title = $_POST['title'];
     $content = $_POST['content'];
     $publish = isset($_POST['publish']) ? 1 : 0;
-    $topic = $_POST['id_topic'];
 }
 
 // Статус опубликовать или снять с публикации

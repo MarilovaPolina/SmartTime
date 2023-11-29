@@ -56,12 +56,6 @@
                         <input name="img" type="file" class="form-control" id="inputGroupFile02">
                         <label class="input-group-text" for="inputGroupFile02">Upload</label>
                     </div>
-                    <select name="topic" class="form-select mb-2" aria-label="Default select example">
-                        <option selected>Категория поста:</option>
-                        <?php foreach ($topics as $key => $topic): ?>
-                            <option value="<?=$topic['id']; ?>"><?=$topic['name'];?></option>
-                        <?php endforeach; ?>
-                    </select>
                     <div class="form-check">
                         <input name="publish" class="form-check-input" type="checkbox" value="1" id="flexCheckChecked" checked>
                         <label class="form-check-label" for="flexCheckChecked">

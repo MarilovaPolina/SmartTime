@@ -34,52 +34,14 @@ $post = selectPostFromPostsWithUsersOnSingle('posts', 'users', $_GET['post']);
                 <div class="single_post_text col-12">
                     <?=$post['content'];?>
                 </div>
-                <!-- ИНКЛЮДИМ HTML БЛОК С КОММЕНТАРИЯМИ  --->
-                <?php include("app/include/comments.php"); ?>
-            </div>
-
-        </div>
-        <!-- sidebar Content -->
-        <div class="sidebar col-md-3 col-12">
-
-            <div class="section search">
-                <h3>Поиск</h3>
-                <form action="/" method="post">
-                    <input type="text" name="search-term" class="text-input" placeholder="Введите искомое слово...">
-                </form>
-            </div>
-
-
-            <div class="section topics">
-                <h3>Категории</h3>
-                <ul>
-                    <?php foreach ($topics as $key => $topic): ?>
-                        <li>
-                            <a href="<?=BASE_URL . 'category.php?id=' . $topic['id']; ?>"><?=$topic['name']; ?></a>
-                        </li>
-                    <?php endforeach; ?>
-                </ul>
             </div>
 
         </div>
     </div>
 </div>
 
-<!-- блок main END-->
-<!-- footer -->
 <?php include("app/include/footer.php"); ?>
-<!-- // footer -->
 
-
-<!-- Optional JavaScript; choose one of the two! -->
-
-<!-- Option 1: Bootstrap Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
-
-<!-- Option 2: Separate Popper and Bootstrap JS -->
-<!--
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js" integrity="sha384-KsvD1yqQ1/1+IA7gi3P0tyJcT3vR+NdBTt13hSJ2lnve8agRGXTTyNaBYmCR/Nwi" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js" integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG" crossorigin="anonymous"></script>
--->
 </body>
 </html>

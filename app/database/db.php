@@ -142,7 +142,6 @@ function delete($table, $id){
         t1.img,
         t1.content,
         t1.status,
-        t1.id_topic,
         t1.created_date,
         t2.username
         FROM $table1 AS t1 JOIN $table2 AS t2 ON t1.id_user = t2.id";
@@ -164,7 +163,7 @@ function selectAllFromPostsWithUsersOnIndex($table1, $table2, $limit, $offset){
 }
 
 // Выборка записей (posts) с автором на главную
-function selectTopTopicFromPostsOnIndex($table1){
+/*function selectTopTopicFromPostsOnIndex($table1){
     global $pdo;
     $sql = "SELECT * FROM $table1 WHERE id_topic = 18";
     $query = $pdo->prepare($sql);
@@ -173,7 +172,7 @@ function selectTopTopicFromPostsOnIndex($table1){
     return $query->fetchAll();
 
 }
-
+*/
 
 // Поиск по заголовкам и содержимому (простой)
 function seacrhInTitileAndContent($text, $table1, $table2){

@@ -1,14 +1,12 @@
 ﻿<?php
     include "path.php";
-    include "app/controllers/topics.php";
+    include 'app/database/db.php';
 
     $page = isset($_GET['page']) ? $_GET['page']: 1;
     $limit = 2;
     $offset = $limit * ($page - 1);
-    $total_pages = round(countRow('posts') / $limit, 0);
 
     $posts = selectAllFromPostsWithUsersOnIndex('posts', 'users', $limit, $offset);
-    $topTopic = selectTopTopicFromPostsOnIndex('posts');
 
 
 ?>

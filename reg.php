@@ -13,8 +13,6 @@
 <body>
 
 <?php include("app/include/header.php"); ?>
-<!-- END HEADER -->
-<!-- FORM -->
 <div class="container reg_form">
     <h2>Регистрация</h2>
     <form action="reg.php" method="post" class="row justify-content-center">
@@ -46,7 +44,7 @@
     <div class="w-100"></div>
     <div class="mb-3 col-12 col-md-4">
         <button type="submit" class="btn btn-secondary" name="button-reg">Регистрация</button>
-        <a href="aut.html">Войти</a>
+        <a href="log.php">Вход</a>
     </div>
     </form>
 </div>

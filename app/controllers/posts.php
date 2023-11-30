@@ -5,16 +5,16 @@ if (!$_SESSION){
     header('location: ' . BASE_URL . 'log.php');
 }
 
-$errMsg = [];
+$errMsg = "";
 $id = '';
 $title = '';
 $content = '';
 $img = '';
 
 $posts = selectAll('posts');
-$postsAdm = selectAllFromPostsWithUsers('posts', 'users');
+$allposts = selectAll('posts');
 
-// Код для формы создания записи
+// Создать новый товар в админ панели
 if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_post'])){
 
     if (!empty($_FILES['img']['name'])){
@@ -41,20 +41,16 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_post'])){
 
     $title = trim($_POST['title']);
     $content = trim($_POST['content']);
-    $publish = isset($_POST['publish']) ? 1 : 0;
-
 
     if($title === '' || $content === ''){
-        array_push($errMsg, "Не все поля заполнены!");
+        $errMsg="Не все поля заполнены";
     }elseif (mb_strlen($title, 'UTF8') < 7){
-        array_push($errMsg, "Название статьи должно быть более 7-ми символов");
+        $errMsg="Название товара должно быть более 7-ми символов";
     }else{
         $post = [
-            'id_user' => $_SESSION['id'],
             'title' => $title,
             'content' => $content,
             'img' => $_POST['img'],
-            'status' => $publish,
         ];
 
         $post = insert('posts', $post);
@@ -65,85 +61,11 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_post'])){
     $id = '';
     $title = '';
     $content = '';
-    $publish = '';
 }
 
-
-// АПДЕЙТ СТАТЬИ
-if($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id'])){
-    $post = selectOne('posts', ['id' => $_GET['id']]);
-
-    $id =  $post['id'];
-    $title =  $post['title'];
-    $content = $post['content'];
-    $publish = $post['status'];
-}
-
-if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit_post'])){
-    $id =  $_POST['id'];
-    $title = trim($_POST['title']);
-    $content = trim($_POST['content']);
-    $publish = isset($_POST['publish']) ? 1 : 0;
-
-    if (!empty($_FILES['img']['name'])){
-        $imgName = time() . "_" . $_FILES['img']['name'];
-        $fileTmpName = $_FILES['img']['tmp_name'];
-        $fileType = $_FILES['img']['type'];
-        $destination = ROOT_PATH . "\assets\images\posts\\" . $imgName;
-
-
-        if (strpos($fileType, 'image') === false) {
-            array_push($errMsg, "Подгружаемый файл не является изображением!");
-        }else{
-            $result = move_uploaded_file($fileTmpName, $destination);
-
-            if ($result){
-                $_POST['img'] = $imgName;
-            }else{
-                array_push($errMsg, "Ошибка загрузки изображения на сервер");
-            }
-        }
-    }else{
-        array_push($errMsg, "Ошибка получения картинки");
-    }
-
-
-    if($title === '' || $content === ''){
-        array_push($errMsg, "Не все поля заполнены!");
-    }elseif (mb_strlen($title, 'UTF8') < 7){
-        array_push($errMsg, "Название статьи должно быть более 7-ми символов");
-    }else{
-        $post = [
-            'id_user' => $_SESSION['id'],
-            'title' => $title,
-            'content' => $content,
-            'img' => $_POST['img'],
-            'status' => $publish,
-        ];
-
-        $post = update('posts', $id, $post);
-        header('location: ' . BASE_URL . 'admin/posts/index.php');
-    }
-}else{
-    $title = $_POST['title'];
-    $content = $_POST['content'];
-    $publish = isset($_POST['publish']) ? 1 : 0;
-}
-
-// Статус опубликовать или снять с публикации
-if($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['pub_id'])){
-    $id = $_GET['pub_id'];
-    $publish = $_GET['publish'];
-
-    $postId = update('posts', $id, ['status' => $publish]);
-
-    header('location: ' . BASE_URL . 'admin/posts/index.php');
-    exit();
-}
-
-// Удаление статьи
+// Удалить товар из админ панели
 if($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['delete_id'])){
     $id = $_GET['delete_id'];
-    delete('posts', $id);
+    deleteTovar('posts', $id);
     header('location: ' . BASE_URL . 'admin/posts/index.php');
 }

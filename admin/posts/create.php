@@ -1,5 +1,4 @@
 <?php
-
     include "../../path.php";
     include "../../app/controllers/posts.php";
 ?>
@@ -20,10 +19,10 @@
 
         <div class="posts">
             <h2>Создать товар</h2>
+            <div class="mb-3 col-12 col-md-4 err">
+                <p><?=$errMsg?></p>
+            </div>
             <div class="row add-post">
-                <div class="mb-12 col-12 col-md-12 err">
-                    <?php include "../../app/helps/errorInfo.php"; ?>
-                </div>
                 <form action="create.php" method="post" enctype="multipart/form-data">
                     <div class="col mb-4">
                         <input value="<?=$title; ?>" name="title" type="text" class="form-control" placeholder="Title" aria-label="Название">
@@ -36,14 +35,9 @@
                         <input name="img" type="file" class="form-control" id="inputGroupFile02">
                         <label class="input-group-text" for="inputGroupFile02">Upload</label>
                     </div>
-                    <div class="form-check">
-                        <input name="publish" class="form-check-input" type="checkbox" value="1" id="flexCheckChecked" checked>
-                        <label class="form-check-label" for="flexCheckChecked">
-                            Publish
-                        </label>
-                    </div>
-                    <div class="col col-6">
-                        <button name="add_post" class="btn btn-primary" type="submit">Добавить запись</button>
+
+                    <br><div class="col col-6">
+                        <button name="add_post" class="btn btn-primary" type="submit">Опубликовать</button>
                     </div>
                 </form>
             </div>

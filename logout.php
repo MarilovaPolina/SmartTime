@@ -9,5 +9,4 @@ unset($_SESSION['admin']);
 unset($_SESSION['name']);
 unset($_SESSION['surname']);
 
-
 header('location: ' . BASE_URL);

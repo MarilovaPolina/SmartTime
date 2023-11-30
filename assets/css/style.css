@@ -103,6 +103,7 @@ header ul li ul li a {
     margin-bottom: 30px;
     background-color: #d3e0e9;
     padding: 20px 0px;
+    border-radius: 6px;
 }
 .main-content .post_text{
     padding: 8px;
@@ -117,6 +118,10 @@ header ul li ul li a {
 }
 .main-content .post_text i{
     margin: 0px 14px 14px 0;
+}
+
+.img-tovar{
+    max-height:270px;
 }
 /*
     Footer

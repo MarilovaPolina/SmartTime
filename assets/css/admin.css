@@ -218,8 +218,7 @@ form div.err p {
 }
 
 .posts h2{
-    text-align: center;
-    margin: 2rem 0 0 0.4rem;
+    margin-top: 30px;
 }
 
 .posts .title-table div{
@@ -244,6 +243,9 @@ form div.err p {
     font-weight: bold;
 }
 
+.del{
+    color: #f07575;
+}
 /*.add-post form div{*/
 /*    margin: 2rem 0;*/
 /*}*/

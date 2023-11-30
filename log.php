@@ -12,9 +12,6 @@
 <body>
 
 <?php include("app/include/header.php"); ?>
-
-<!-- END HEADER -->
-<!-- FORM -->
 <div class="container reg_form">
     <form class="row justify-content-center" method="post" action="log.php">
         <h2 class="col-12">Авторизация</h2>

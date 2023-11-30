@@ -8,14 +8,14 @@
             </div>
             <nav class="col-8">
                 <ul>
+                    <li><a href="<?php echo BASE_URL ?>">Главная</a> </li>
                     <li>
-                        <a href="#">
-                            <i class="fa fa-user"></i>
+                        <a class="korzina_li" href="#">
                             <?php echo $_SESSION['login']; ?>
                         </a>
                     </li>
                     <li>
-                        <a href="<?php echo BASE_URL . "logout.php"; ?>">Выход</a>
+                        <a class="korzina_li" href="<?php echo BASE_URL . "logout.php"; ?>">Выход</a>
                     </li>
                 </ul>
             </nav>

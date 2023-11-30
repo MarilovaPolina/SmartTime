@@ -12,30 +12,28 @@
                     <li><a href="<?php echo BASE_URL ?>">Товары</a> </li>
                     <li><a href="<?php echo BASE_URL ?>">О нас</a> </li>
 
-                    <?php if (!isset($_SESSION['admin'])): ?>
-                        <li><a class="korzina_li"  href="<?php echo BASE_URL ?>">КОРЗИНА</a> </li>
+                    <?php if (isset($_SESSION['id'])): ?>
+                        <li><a class="korzina_li"  href="<?php echo BASE_URL ?>">Корзина</a> </li>
                     <?php endif; ?>
 
                     <li>
                         <?php if (isset($_SESSION['id'])): ?>
-                            <a href="#">
-                                <i class="fa fa-user"></i>
+                            <a class="korzina_li" href="cabinet.php">
+                                ЛК[
                                 <?php echo $_SESSION['login']; ?>
+                                ]
                             </a>
-                            <ul>
-                                <?php if ($_SESSION['admin']): ?>
-                                    <li><a href="admin/posts/index.php">Админ панель</a> </li>
-                                <?php endif; ?>
-                                <li><a href="<?php echo BASE_URL . "logout.php"; ?>">Выход</a> </li>
-                            </ul>
+
+                            <?php if ($_SESSION['admin']): ?>
+                                <li><a class="korzina_li" href="admin/posts/index.php">Админ панель</a> </li>
+                            <?php endif; ?>
+                            <li><a class="korzina_li" href="<?php echo BASE_URL . "logout.php"; ?>">Выход</a> </li>
+
                         <?php else: ?>
                             <a href="<?php echo BASE_URL . "log.php"; ?>">
-                                <i class="fa fa-user"></i>
-                                Войти
+                                Вход/Регистрация
                             </a>
-                            <ul>
-                                <li><a href="<?php echo BASE_URL . "reg.php"; ?>">Регистрация</a> </li>
-                            </ul>
+
                         <?php endif; ?>
 
                     </li>

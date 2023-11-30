@@ -1,14 +1,16 @@
 <?php
 include SITE_ROOT . "/app/database/db.php";
-
-$errMsg = [];
+$errMsg='';
 
 function userAuth($user){
     $_SESSION['id'] = $user['id'];
-    $_SESSION['login'] = $user['username'];
+    $_SESSION['login'] = $user['login'];
     $_SESSION['admin'] = $user['admin'];
+    $_SESSION['name'] = $user['name'];
+    $_SESSION['surname'] = $user['surname'];
     if($_SESSION['admin']){
-        header('location: ' . BASE_URL . "admin/posts/index.php");
+        echo "Авторизован";
+        //header('location: ' . BASE_URL . "admin/posts/index.php");
     }else{
         header('location: ' . BASE_URL);
     }
@@ -37,7 +39,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['button-reg'])){
         if($existence['login'] === $login){
             array_push($errMsg, "Пользователь с такой почтой уже зарегистрирован!");
         }else{
-            $pass = password_hash($passF, PASSWORD_DEFAULT);
+            $pass = password_hash($pass1, PASSWORD_DEFAULT);
             $post = [
                 'admin' => $admin,
                 'name' => $name,
@@ -51,30 +53,33 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['button-reg'])){
         }
     }
 }else{
-    $login = '';
-    $email = '';
+    $surname='';
+    $name='';
+    $login='';
 }
 
 // Код для формы авторизации
 if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['button-log'])){
 
-    $email = trim($_POST['mail']);
+    $login = trim($_POST['login']);
     $pass = trim($_POST['password']);
 
-    if($email === '' || $pass === '') {
-        array_push($errMsg, "Не все поля заполнены!");
-    }else{
-        $existence = selectOne('users', ['email' => $email]);
+    if($login === '' || $pass === '') {
+        $errMsg="Не все поля заполнены!";
+    }else{       
+        $existence = selectOne('users', ['login' => $login]);
+
         if($existence && password_verify($pass, $existence['password'])){
             userAuth($existence);
         }else{
-            array_push($errMsg, "Почта либо пароль введены неверно!");
+            $errMsg=$pass;
         }
+
     }
 }else{
-    $email = '';
+    $login = '';
 }
-
+/*
 // Код добавления пользователя в админке
 if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['create-user'])){
 
@@ -165,7 +170,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update-user'])){
     $username = $user['username'];
     $email = $user['email'];
 }
-
+*/
 //if($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['pub_id'])){
 //    $id = $_GET['pub_id'];
 //    $publish = $_GET['publish'];

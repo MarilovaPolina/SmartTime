@@ -1,5 +1,6 @@
-<?php   include("path.php");
-        include "app/controllers/users.php";
+<?php   
+    include("path.php");
+    include "app/controllers/users.php";
 ?>
 <html lang="ru">
 <head>
@@ -21,19 +22,14 @@
             <p><?=$errMsg?></p>
         </div>
         <div class="w-100"></div>
-        <div class="mb-3 col-12 col-md-4">
-            <label for="formGroupExampleInput" class="form-label">Логин</label>
-            <input value="<?= $login ?>" name="login" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Логин">
-        </div>
-        <div class="w-100"></div>
-        <div class="mb-3 col-12 col-md-4">
-            <label for="exampleInputPassword1" class="form-label">Пароль</label>
-            <input name="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Пароль">
-        </div>
+
+        <input name="login" type="text" maxlength="255" placeholder="Логин" value="<?= $login ?>" required></br>
+        <input name="password" type="password" maxlength="255" placeholder="Пароль" required></br>
+
         <div class="w-100"></div>
         <div class="mb-3 col-12 col-md-4">
             <button type="submit" name="button-log" class="btn btn-secondary">Войти</button>
-            <a href="aut.html">Зарегистрироваться</a>
+            <a href="reg.php">Зарегистрироваться</a>
         </div>
     </form>
 </div>

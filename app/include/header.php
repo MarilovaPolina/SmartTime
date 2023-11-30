@@ -9,8 +9,12 @@
             <nav class="col-8">
                 <ul>
                     <li><a href="<?php echo BASE_URL ?>">Главная</a> </li>
-                    <li><a href="<?php echo BASE_URL . 'about.php'?>">О нас</a> </li>
-                    <li><a href="#">Услуги</a> </li>
+                    <li><a href="<?php echo BASE_URL ?>">Товары</a> </li>
+                    <li><a href="<?php echo BASE_URL ?>">О нас</a> </li>
+
+                    <?php if (!isset($_SESSION['admin'])): ?>
+                        <li><a class="korzina_li"  href="<?php echo BASE_URL ?>">КОРЗИНА</a> </li>
+                    <?php endif; ?>
 
                     <li>
                         <?php if (isset($_SESSION['id'])): ?>
@@ -20,7 +24,7 @@
                             </a>
                             <ul>
                                 <?php if ($_SESSION['admin']): ?>
-                                    <li><a href="#">Админ панель</a> </li>
+                                    <li><a href="admin/posts/index.php">Админ панель</a> </li>
                                 <?php endif; ?>
                                 <li><a href="<?php echo BASE_URL . "logout.php"; ?>">Выход</a> </li>
                             </ul>

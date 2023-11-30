@@ -197,6 +197,10 @@ FORMS
     text-decoration: underline;
     margin-left: 60px;
 }
+
+.korzina_li{
+    color: #a8a8a8;
+}
 /*
 FORMS
  */
@@ -229,10 +233,4 @@ COMMENTS
     display: inline-flex;
     margin: 0.5rem 1.5rem 1.5rem 0;
     font-weight: 500;
-}
-
-
-.aaa{
-    text-align: left;
-    float: left;
 }

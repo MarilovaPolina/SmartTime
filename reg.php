@@ -27,13 +27,13 @@
         </i>
     </div>
 
-    <input name="login" class="inputline" type="text" maxlength="255" placeholder="Логин*" value="<?= $login ?>" required></br>
-    <input name="surname" class="inputline" type="text" maxlength="255" placeholder="Фамилия*" value="<?= $surname ?>"
+    <input name="login" type="text" maxlength="255" placeholder="Логин*" value="<?= $login ?>" required></br>
+    <input name="surname" type="text" maxlength="255" placeholder="Фамилия*" value="<?= $surname ?>"
         required></br>
-    <input name="name" class="inputline" type="text" maxlength="255" placeholder="Имя*" value="<?= $name ?>" required></br>
+    <input name="name" type="text" maxlength="255" placeholder="Имя*" value="<?= $name ?>" required></br>
     
-    <input name="password" class="inputline" type="password" maxlength="255" placeholder="Пароль*" required></br>
-    <input name="password_repeat" class="inputline" type="password" maxlength="255" placeholder="Повторите пароль*"
+    <input name="password" type="password" maxlength="255" placeholder="Пароль*" required></br>
+    <input name="password_repeat" type="password" maxlength="255" placeholder="Повторите пароль*"
         required></br>
 
     <div class="form-check">
